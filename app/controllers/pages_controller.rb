@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_action :set_kitten_url, only: [:kitten, :kittens]
+
   def welcome
 
   end
@@ -8,15 +10,15 @@ class PagesController < ApplicationController
   end
 
   def contest
+    flash[:notice] = "Sorry, the contest has ended"
+    redirect_to "/welcome"
   end
 
   def kitten
-    set_kitten_url
   end
 
   def kittens
-    set_kitten_url
-  end 
+  end
 
   def set_kitten_url
     requested_size = params[:size]
